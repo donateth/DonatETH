@@ -1,7 +1,8 @@
 {
-  "name": "app",
+  "name": "DonatETH",
   "version": "0.1.0",
   "private": true,
+  "description": "Don't leave your Karma for afterlife.",
   "dependencies": {
     "drizzle": "^1.2.4",
     "drizzle-react": "^1.2.0",
