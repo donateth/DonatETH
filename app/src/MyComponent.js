@@ -2,20 +2,41 @@ import React from "react";
 import {
   AccountData,
   ContractData,
-  ContractForm,
+  ContractForm
 } from "drizzle-react-components";
-
+import KyberSwap from "./KyberSwap";
 import logo from "./logo.png";
+import Button from "./Button";
 
 export default ({ accounts }) => (
   <div className="App">
+    <nav className="uk-navbar-container uk-navbar-transparent" uk-navbar="true">
+      <div className="uk-navbar-right">
+        <ul className="uk-navbar-nav">
+          <li uk-toggle="target: #form" className="uk-active">
+            <a href="/about">About</a>
+          </li>
+          <li className="uk-active">
+            <a>Contact Us</a>
+          </li>
+          <li>
+            <KyberSwap></KyberSwap>
+          </li>
+        </ul>
+      </div>
+    </nav>
     <div>
-      <img src={logo} alt="drizzle-logo" />
+      <img src={logo} className="logo" alt="drizzle-logo" />
       <h1>DonatETH</h1>
-      <p>Don't leave your Karma for afterlife.</p>
+      <p className="uk-text-lead">Don't leave your Karma for afterlife.</p>
+    </div>
+    <div>
+      <Button text="Log-in" type="primary" />
+
+      <Button text="Register" type="secondary" />
     </div>
 
-    <div className="section">
+    {/* <div className="section">
       <h2>Active Account</h2>
       <AccountData accountIndex={0} units="ether" precision={3} />
     </div>
@@ -81,7 +102,7 @@ export default ({ accounts }) => (
         <ContractData contract="ComplexStorage" method="string2" toUtf8 />
       </p>
       <strong>Single Device Data: </strong>
-      <ContractData contract="ComplexStorage" method="singleDD" />
-    </div>
+      <ContractData contract="ComplexStorage" method="singleDD" /> 
+    </div>*/}
   </div>
 );

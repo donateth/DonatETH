@@ -8,3 +8,17 @@
   max-width: 720px;
   margin: 4rem auto auto;
 }
+
+.nav-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  width: 21rem;
+}
+
+.highlight:active{
+  border: 0.1rem solid rgb(188, 188, 255);
+}

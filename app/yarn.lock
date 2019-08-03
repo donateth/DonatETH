@@ -10905,6 +10905,11 @@ uglifyjs-webpack-plugin@^1.2.4:
     webpack-sources "^1.1.0"
     worker-farm "^1.5.2"
 
+uikit@^3.1.7:
+  version "3.1.7"
+  resolved "https://registry.yarnpkg.com/uikit/-/uikit-3.1.7.tgz#1919b5d7173ef37cfae88e820856677bfd36feaa"
+  integrity sha512-eKVrD6ccMltGpjuphLUTXpqln0Q9aNa0+4HrxEO85i1BD4N2MvpZqsva6gOSZTDnmnen0XeNbPCP+aiU2u2lmw==
+
 ultron@~1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ultron/-/ultron-1.1.1.tgz#9fe1536a10a664a65266a1e3ccf85fd36302bc9c"
