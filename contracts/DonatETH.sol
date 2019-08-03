@@ -16,8 +16,10 @@ contract DonatETH {
         string username;
         uint karma;
         UserType userType;
-        mapping(uint => Appointment) Appointments;
-        mapping(uint => Order) Orders;
+        mapping(uint => Appointment) appointments;
+        uint aptCount;
+        mapping(uint => Order) orders;
+        uint orderCount;
     }
     
     struct Store {
@@ -58,9 +60,9 @@ contract DonatETH {
         bool paid;
         uint worth;
         string physicalAddress;
-        string corrdinates;
-        uint initiateDate;
-        uint completeDate;
+        string coordinates;
+        string initiateDate;
+        string completeDate;
     }
     
     struct Order {
@@ -71,9 +73,9 @@ contract DonatETH {
         bool paid;
         uint worth;
         string physicalAddress;
-        string corrdinates;
-        uint initiateDate;
-        uint completeDate;
+        string coordinates;
+        string initiateDate;
+        string completeDate;
         uint storeId;
         Item item;
         
@@ -85,12 +87,15 @@ contract DonatETH {
     uint storeCount = 0;
     uint itemCount = 0;
     uint appointmentId = 0;
+    uint orderId = 0;
+    uint itemId = 0;
     address owner;
     
     mapping(uint => User) private users;
+    mapping(address => User) private userAddressMap;
     mapping(uint => Store) stores;
-    mapping(address => Appointment[]) userAppointments;
-    mapping(address => Order[]) orders;
+    mapping(uint => Appointment) allAppointments;
+    mapping(uint => Order) allOrders;
     mapping(address => mapping(uint => Store)) ownerStores;
 
     // Events
@@ -103,7 +108,7 @@ contract DonatETH {
     
     
     // Modifiers
-     // Verifires caller's address
+    // Verifires caller's address
     modifier verifyCaller (address _address) { 
         require (msg.sender == _address); 
     _;
@@ -140,10 +145,13 @@ contract DonatETH {
             username: _username,
             karma: 0,
             userAddress: msg.sender,
-            userType: _userType
+            userType: _userType,
+            aptCount: 0,
+            orderCount: 0
         });
         
         users[uid] = user;
+        userAddressMap[msg.sender] = user;
         
         emit userCreated(uid);
         
@@ -159,7 +167,7 @@ contract DonatETH {
             isActive: false,
             storeId: storeCount++,
             itemCount: 0,
-            docs: new string[](1),
+            docs: new string[](1), //fix later
             verificationStatus: false
         });
         
@@ -201,6 +209,82 @@ contract DonatETH {
         return true;
     }
     
+    function setAppointment(address _picker, uint _qty, uint _price, bool _paid, string memory _physicalAddress, string memory _coordinates, string memory _initialDate) public payable returns (bool status) {
+        Appointment memory apt = Appointment({
+            appointmentId: appointmentId++,
+            status: AppointmentStatus.PENDING,
+            donator: userAddressMap[msg.sender],
+            picker: userAddressMap[_picker],
+            quantity: _qty,
+            paid: _paid,
+            worth: _price,
+            physicalAddress: _physicalAddress,
+            coordinates: _coordinates,
+            initiateDate: _initialDate,
+            completeDate: ''
+        });
+        
+        userAddressMap[msg.sender].appointments[userAddressMap[msg.sender].aptCount++] = apt;
+        allAppointments[appointmentId++] = apt;
+        return true;
+    }
     
+        function setOrder(uint _storeId, uint _itemId, uint _qty, uint _price, bool _paid, string memory _physicalAddress, string memory _coordinates, string memory _initialDate) public payable returns (bool status) {
+        Order memory order = Order({
+            orderId: orderId++,
+            status: orderStatus.ORDERED,
+            customer: userAddressMap[msg.sender],
+            quantity: _qty,
+            paid: _paid,
+            worth: _price,
+            physicalAddress: _physicalAddress,
+            coordinates: _coordinates,
+            initiateDate: _initialDate,
+            completeDate: '',
+            storeId: _storeId,
+            item: stores[_storeId].items[_itemId]
+        });
+        
+        userAddressMap[msg.sender].orders[orderId] = order;
+        userAddressMap[msg.sender].orderCount++;
+        
+        return true;
+    }
+    
+    function getStore(uint _storeId) public view returns (string memory name, uint count, string memory, string memory){
+        Store memory store = stores[_storeId];
+        require(store.isActive == true, "Store is not yet active!");
+        require(store.verificationStatus == true, "Store is not yet verified!");
+        return (store.name, store.itemCount, store.description, store.media);
+    }
+    
+    function getStoreItem(uint _itemId, uint _storeId) public view returns (string memory, uint, string memory) {
+        Item memory item = stores[_storeId].items[_itemId];
+        return (item.name, item.price, item.media);
+    }
+    
+    function getUserAppointments(address _userAddress) public view returns (uint[] memory) {
+        User storage curUser = userAddressMap[_userAddress];
+        uint[] memory ret = new uint[](curUser.aptCount);
+        for (uint i = 0; i < curUser.aptCount; i++) {
+            ret[i] = curUser.appointments[i].appointmentId;
+        }
+        return ret;
+    }
+    
+    function getAppointment(uint _appointmentId) public view returns (uint, AppointmentStatus , uint, uint, uint, string memory, string memory, string memory, string memory) {
+        Appointment memory apt = allAppointments[_appointmentId];
+        return (apt.appointmentId, apt.status, apt.donator.userId, apt.quantity, apt.worth, apt.physicalAddress, apt.coordinates, apt.initiateDate, apt.completeDate);
+    }
+    
+    function getUserByAddress(address _userAddress) public view returns (string memory, string memory, string memory, UserType, uint, uint) {
+        User memory user = userAddressMap[_userAddress];
+        return (user.name, user.email, user.username, user.userType, user.aptCount, user.orderCount);
+    }
+    
+    function getOrder(uint _orderId) public returns (uint, uint, orderStatus , uint, uint, uint, string memory, string memory, string memory, string memory) {
+        Order memory order = allOrders[_orderId];
+        return (order.item.itemId, order.orderId, order.status, order.customer.userId, order.quantity, order.worth, order.physicalAddress, order.coordinates, order.initiateDate, order.completeDate);
+    }
     
 }
