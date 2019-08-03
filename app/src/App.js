@@ -14,8 +14,10 @@ import MyContainer from "./MyContainer";
 import Home from "./Home";
 import Dashboard from "./Dashboard";
 import Form from "./Form";
-import Stores from "./Stores";
 import StoreDetail from "./StoreDetail";
+import Admin from "./Containers/Admin";
+import Donate from "./Containers/Donate";
+import StoreItem from "./StoreItem";
 
 const drizzleStore = generateStore(drizzleOptions);
 const drizzle = new Drizzle(drizzleOptions, drizzleStore);
@@ -29,72 +31,14 @@ class App extends Component {
         <LoadingContainer>
           <Router>
             <MyContainer drizzle={drizzle} drizzleState={drizzleStore}>
-              <Route
-                exact
-                path="/"
-                component={props => (
-                  <Home
-                    {...props}
-                    drizzle={drizzle}
-                    drizzleState={drizzleStore}
-                  />
-                )}
-              />
-              <Route
-                exact
-                path="/dashboard"
-                component={props => (
-                  <Dashboard
-                    {...props}
-                    drizzle={drizzle}
-                    drizzleState={drizzleStore}
-                  />
-                )}
-              />
-              <Route
-                exact
-                path="/about"
-                component={props => (
-                  <Form
-                    {...props}
-                    drizzle={drizzle}
-                    drizzleState={drizzleStore}
-                  />
-                )}
-              />
-              <Route
-                exact
-                path="/register"
-                component={props => (
-                  <Form
-                    {...props}
-                    drizzle={drizzle}
-                    drizzleState={drizzleStore}
-                  />
-                )}
-              />
-              <Route
-                exact
-                path="/stores"
-                component={props => (
-                  <Stores
-                    {...props}
-                    drizzle={drizzle}
-                    drizzleState={drizzleStore}
-                  />
-                )}
-              />
-              <Route
-                exact
-                path="/store/:id"
-                component={props => (
-                  <StoreDetail
-                    {...props}
-                    drizzle={drizzle}
-                    drizzleState={drizzleStore}
-                  />
-                )}
-              />
+              <Route exact path="/" component={(props) => <Home {...props} drizzle={drizzle} drizzleState={drizzleStore} />} />
+              <Route exact path="/dashboard" component={(props) => <Dashboard {...props} drizzle={drizzle} drizzleState={drizzleStore} />} />
+              <Route exact path="/about" component={(props) => <Form {...props} drizzle={drizzle} drizzleState={drizzleStore} />} />
+              <Route exact path="/register" component={(props) => <Form {...props} drizzle={drizzle} drizzleState={drizzleStore} />} />
+              <Route exact path="/admin" component={(props) => <Admin {...props} drizzle={drizzle} drizzleState={drizzleStore} />} />
+              <Route exact path="/donate" component={(props) => <Donate {...props} drizzle={drizzle} drizzleState={drizzleStore} />} />
+              <Route exact path="/stores" component={(props) => <StoreItem {...props} drizzle={drizzle} drizzleState={drizzleStore} />} />
+              <Route exact path="/store:id" component={(props) => <StoreDetail {...props} drizzle={drizzle} drizzleState={drizzleStore} />} />
             </MyContainer>
           </Router>
         </LoadingContainer>

@@ -36,14 +36,14 @@ const RegisterForm = (props) => {
       <form onSubmit={(e) => {
         e.preventDefault()
         registerUser()
-      }} class="uk-form-stacked">
-        <div class="uk-margin">
-          <label class="uk-form-label" for="form-stacked-text">
+      }} className="uk-form-stacked">
+        <div className="uk-margin">
+          <label className="uk-form-label">
             Name
           </label>
-          <div class="uk-form-controls">
+          <div className="uk-form-controls">
             <input
-              class="uk-input"
+              className="uk-input"
               type="text"
               id="name"
               placeholder="Your name"
@@ -51,13 +51,13 @@ const RegisterForm = (props) => {
           </div>
         </div>
 
-        <div class="uk-margin">
-          <label class="uk-form-label" for="form-stacked-text">
+        <div className="uk-margin">
+          <label className="uk-form-label" >
             Email
           </label>
-          <div class="uk-form-controls">
+          <div className="uk-form-controls">
             <input
-              class="uk-input"
+              className="uk-input"
               id="email"
               type="email"
               placeholder="Your email"
@@ -65,13 +65,13 @@ const RegisterForm = (props) => {
           </div>
         </div>
 
-        <div class="uk-margin">
-          <label class="uk-form-label" for="form-stacked-text">
+        <div className="uk-margin">
+          <label className="uk-form-label" >
             Username
           </label>
-          <div class="uk-form-controls">
+          <div className="uk-form-controls">
             <input
-              class="uk-input"
+              className="uk-input"
               id="username"
               type="text"
               placeholder="Your username"
@@ -79,12 +79,12 @@ const RegisterForm = (props) => {
           </div>
         </div>
 
-        <div class="uk-margin">
-          <label class="uk-form-label" for="form-stacked-select">
+        <div className="uk-margin">
+          <label className="uk-form-label" >
             Select your type
           </label>
-          <div class="uk-form-controls">
-            <select class="uk-select" id="user-type">
+          <div className="uk-form-controls">
+            <select className="uk-select" id="user-type">
               <option value="0">MANAV</option>
               <option value="1">DOOT</option>
               <option value="2">DAATA</option>
