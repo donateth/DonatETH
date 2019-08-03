@@ -34,7 +34,6 @@ contract DonatETH {
         mapping(uint => Item) items;
         bool verificationStatus;
     }
-    
     struct Item {
         string name;
         uint price;
@@ -104,7 +103,7 @@ contract DonatETH {
     event itemCreated(uint _storeId, string name);
     event appointmentEvent(uint appointmentId, AppointmentStatus status);
     event orderEvent(uint orderId, orderStatus);
-    event docsVerification(uint orderId, orderStatus);
+    event docsVerification(uint storeId, bool status);
     
     
     // Modifiers
@@ -189,6 +188,8 @@ contract DonatETH {
         stores[_storeId].verificationStatus = true;
         stores[_storeId].isActive = true;
         
+        emit docsVerification(_storeId, true);
+        
         return true;
     }
     
@@ -226,6 +227,9 @@ contract DonatETH {
         
         userAddressMap[msg.sender].appointments[userAddressMap[msg.sender].aptCount++] = apt;
         allAppointments[appointmentId++] = apt;
+        
+        emit appointmentEvent(appointmentId, apt.status);
+        
         return true;
     }
     
@@ -248,10 +252,12 @@ contract DonatETH {
         userAddressMap[msg.sender].orders[orderId] = order;
         userAddressMap[msg.sender].orderCount++;
         
+        emit orderEvent(orderId, order.status);
+        
         return true;
     }
     
-    function getStore(uint _storeId) public view returns (string memory name, uint count, string memory, string memory){
+    function getStore(uint _storeId) public view returns (string memory name, uint count, string memory description, string memory media){
         Store memory store = stores[_storeId];
         require(store.isActive == true, "Store is not yet active!");
         require(store.verificationStatus == true, "Store is not yet verified!");
