@@ -212,6 +212,10 @@ contract DonatETH is Ownable {
         return true;
     }
     
+    function getUid() public returns (uint) {
+        return uid;
+    }
+    
     function setAppointment(address _picker, uint _qty, uint _price, bool _paid, string memory _physicalAddress, string memory _coordinates, string memory _initialDate) public payable returns (bool status) {
         Appointment memory apt = Appointment({
             appointmentId: appointmentId++,
@@ -259,11 +263,9 @@ contract DonatETH is Ownable {
         return true;
     }
     
-    function getStore(uint _storeId) public view returns (string memory name, uint count, string memory description, string memory media){
+    function getStore(uint _storeId) public view returns (uint, string memory name, uint itemCount, string memory description, string memory media){
         Store memory store = stores[_storeId];
-        require(store.isActive == true, "Store is not yet active!");
-        require(store.verificationStatus == true, "Store is not yet verified!");
-        return (store.name, store.itemCount, store.description, store.media);
+        return (store.storeId, store.name, store.itemCount, store.description, store.media);
     }
     
     function getStoreItem(uint _itemId, uint _storeId) public view returns (string memory, uint, string memory) {
@@ -298,7 +300,7 @@ contract DonatETH is Ownable {
         return appointmentId;
     }
 
-    function getAllStores() public view returns (uint storeCount) {
+    function getAllStores() public view returns (uint) {
         return storeCount;
     }
 

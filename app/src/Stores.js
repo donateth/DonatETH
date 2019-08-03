@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import { drizzleConnect } from "drizzle-react";
+import StoreItem from './StoreItem'
 
 const Stores = props => {
   const [stores, setStores] = useState({});
@@ -11,7 +12,7 @@ const Stores = props => {
       .then(total => {
         const data = {};
         console.log({ total });
-        for (let i = 0; i < total; i++) {
+        for (let i = 1; i <= total; i++) {
           console.log(i);
           props.drizzle.contracts.DonatETH.methods
             .getStore(i)
@@ -27,7 +28,6 @@ const Stores = props => {
         }
       });
 
-    total.then(res => console.log({ res }));
     // return () => {
     //     cleanup
     // };
@@ -36,15 +36,15 @@ const Stores = props => {
   return (
     <>
       <h1 className="uk-text-center">Karma Forests</h1>
-      {/* <div
+      <div
         className="stores uk-child-width-1-4@m uk-margin-top-large uk-text-center uk-grid"
         uk-grid
       >
-        {props.stores.map(store => {
-          const data = { ...props, storeItem: store };
+        {Object.keys(stores).map(store => {
+          const data = stores[store];
           return <StoreItem key={store.storeId} data={data} />;
         })}
-      </div> */}
+      </div>
     </>
   );
 };
