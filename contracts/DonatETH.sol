@@ -298,6 +298,10 @@ contract DonatETH is Ownable {
         return appointmentId;
     }
 
+    function getAllStores() public view returns (uint storeCount) {
+        return storeCount;
+    }
+
     function getUserByAddress(address _userAddress) public view returns (string memory, string memory, string memory, UserType, uint, uint) {
         User memory user = userAddressMap[_userAddress];
         return (user.name, user.email, user.username, user.userType, user.aptCount, user.orderCount);

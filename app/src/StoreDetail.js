@@ -11,7 +11,6 @@ const StoreDetail = props => {
             <div className="about__contact-card">
               <img
                 alt="IIIT Vadodara Gandhinagar Campus"
-                src={items.image}
                 className="about__photo"
               />
               <h2 className="heading--secondary">IIIT Vadodara</h2>
