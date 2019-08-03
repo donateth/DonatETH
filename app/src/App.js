@@ -17,6 +17,7 @@ import Form from "./Form";
 import Admin from "./Containers/Admin";
 import Donate from "./Containers/Donate";
 import StoreItem from "./StoreItem";
+import AddStore from "./Containers/AddStore";
 
 const drizzleStore = generateStore(drizzleOptions)
 const drizzle = new Drizzle(drizzleOptions, drizzleStore)
@@ -42,6 +43,7 @@ class App extends Component {
               <Route exact path="/register" component={(props) => <Form {...props} drizzle={drizzle} drizzleState={drizzleStore} />} />
               <Route exact path="/admin" component={(props) => <Admin {...props} drizzle={drizzle} drizzleState={drizzleStore} />} />
               <Route exact path="/donate" component={(props) => <Donate {...props} drizzle={drizzle} drizzleState={drizzleStore} />} />
+              <Route exact path="/create-store" component={(props) => <AddStore {...props} drizzle={drizzle} drizzleState={drizzleStore} />} />
               <Route exact path="/stores" component={(props) => <StoreItem item={sampleStoreItem} drizzle={drizzle} drizzleState={drizzleStore} />} />
             </MyContainer>
           </Router>
