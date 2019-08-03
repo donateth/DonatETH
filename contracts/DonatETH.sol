@@ -165,11 +165,11 @@ contract DonatETH is Ownable {
             description: _description,
             media: _media,
             manager: msg.sender,
-            isActive: false,
+            isActive: true,
             storeId: storeCount++,
             itemCount: 0,
             docs: new string[](1), //fix later
-            verificationStatus: false
+            verificationStatus: true
         });
         
         stores[storeCount] = store;
