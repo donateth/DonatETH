@@ -10,7 +10,7 @@ import "./App.css";
 
 import drizzleOptions from "./drizzleOptions";
 import MyContainer from "./MyContainer";
-import Form from "./Form";
+import Store from "./Store";
 
 class App extends Component {
   render() {
@@ -19,7 +19,7 @@ class App extends Component {
         <LoadingContainer>
           <Router>
             <Route exact path="/" component={MyContainer} />
-            <Route exact path="/about" component={Form} />
+            <Route exact path="/about" component={Store} />
           </Router>
         </LoadingContainer>
       </DrizzleProvider>
