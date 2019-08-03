@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 import KyberSwap from "./KyberSwap";
 
 
-export default ({ accounts, children }) => (
+const RootComponent = ({ accounts, children, drizzle, drizzleStore }) => (
   <div className="App">
     <nav className="uk-navbar-container uk-navbar-transparent" uk-navbar="true">
       <div className="uk-navbar-right">
@@ -29,3 +29,5 @@ export default ({ accounts, children }) => (
     {/* footer yaha */}
   </div>
 );
+
+export default RootComponent;

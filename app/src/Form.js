@@ -9,14 +9,14 @@ const RegisterForm = (props) => {
   const [stackId, setStackId] = useState('')
 
   const registerUser = () => {
-    const name = document.querySelector('#name')
-    const email = document.querySelector('#email')
-    const username = document.querySelector('#username')
-    const userType = document.querySelector('#user-type')
+    const name = document.querySelector('#name').value
+    const email = document.querySelector('#email').value
+    const username = document.querySelector('#username').value
+    const userType = document.querySelector('#user-type').value
 
-    // const data = {name, email, username, userType}
-    console.log(props.store.getState())
-    const stackID = props.DonatETH.methods.createUser.cacheSend(name, email, username, userType, {
+    const data = {name, email, username, userType}
+    console.log(data)
+    const stackID = props.drizzle.contracts.DonatETH.methods.createUser.cacheSend(name, email, username, userType, {
       from: props.accounts[0]
     });
     
@@ -85,9 +85,9 @@ const RegisterForm = (props) => {
           </label>
           <div className="uk-form-controls">
             <select className="uk-select" id="user-type">
-              <option>MANAV</option>
-              <option>DOOT</option>
-              <option>DAATA</option>
+              <option value="0">MANAV</option>
+              <option value="1">DOOT</option>
+              <option value="2">DAATA</option>
             </select>
           </div>
         </div>
@@ -111,9 +111,11 @@ const RegisterForm = (props) => {
   );
 }
 
-export default drizzleConnect(RegisterForm, state => {
+export default drizzleConnect(RegisterForm, (state, props) => {
   return {
     DonatETH: state.contracts.DonatETH,
-    accounts: state.accounts
+    accounts: state.accounts,
+    drizzle: props.drizzle,
+    drizzleStore: props.drizzleStore
   }
 });

@@ -1,9 +1,10 @@
 import MyComponent from "./MyComponent";
 import { drizzleConnect } from "drizzle-react";
 
-const mapStateToProps = state => {
-  console.log(state)
+const mapStateToProps = (state, props) => {
   return {
+    drizzle: props.drizzle,
+    drizzleStore: props.drizzleStore,
     accounts: state.accounts,
     SimpleStorage: state.contracts.SimpleStorage,
     TutorialToken: state.contracts.TutorialToken,
