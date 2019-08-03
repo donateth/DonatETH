@@ -291,9 +291,9 @@ contract DonatETH is Ownable {
         return ret;
     }
     
-    function getAppointment(uint _appointmentId) public view returns (uint, AppointmentStatus , uint, uint, uint, string memory, string memory, string memory, string memory) {
+    function getAppointment(uint _appointmentId) public view returns (uint appointmentId, AppointmentStatus status, uint donator, uint quantity, uint worth, string memory physicalAddress, string memory coordinates, string memory initialDate, string memory completeDate, bool paid, uint picker) {
         Appointment memory apt = allAppointments[_appointmentId];
-        return (apt.appointmentId, apt.status, apt.donator.userId, apt.quantity, apt.worth, apt.physicalAddress, apt.coordinates, apt.initiateDate, apt.completeDate);
+        return (apt.appointmentId, apt.status, apt.donator.userId, apt.quantity, apt.worth, apt.physicalAddress, apt.coordinates, apt.initiateDate, apt.completeDate, apt.paid, apt.picker.userId);
     }
     
     function getAllAppointment() public view returns (uint apts) {
