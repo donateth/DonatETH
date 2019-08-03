@@ -78,10 +78,10 @@ contract DonatETH is Ownable {
         string completeDate;
         uint storeId;
         Item item;
-        
+
     }
-    
-    
+
+
     // State Variables
     uint uid = 0;
     uint public storeCount = 0;
@@ -90,7 +90,7 @@ contract DonatETH is Ownable {
     uint public orderId = 0;
     uint public itemId = 0;
     address public owner;
-    
+
     mapping(uint => User) private users;
     mapping(address => User) private userAddressMap;
     mapping(uint => Store) public stores;

@@ -5,15 +5,21 @@ export default function Admin(props) {
     useEffect(() => {
         const total = props.drizzle.contracts.DonatETH.methods.getAllAppointment().call().then(total => {
             const data = {}
-            console.log(total)
-            for(let i in total) {
+            console.log({total})
+            for(let i = 0; i < total; i++) {
+                console.log(i)
                 props.drizzle.contracts.DonatETH.methods.getAppointment(i).call().then(apt => {
                     data[i] = apt;
                     console.log(apt)
+                    if(i === total - 1) {
+                        setApts(data)
+                        console.log(data)
+                    }
                 })
             }
-            setApts(data)
         })
+
+        total.then(res => console.log({ res }))
         // return () => {
         //     cleanup
         // };
