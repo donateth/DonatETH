@@ -1,6 +1,7 @@
 pragma solidity >=0.4.22 <0.6.0;
 pragma experimental ABIEncoderV2;
-contract DonatETH {
+import "./Ownable.sol";
+contract DonatETH is Ownable {
     
     enum UserType {MANAV, DAATA, VIDHATA, DOOT}
     enum docsStatus {SUBMITTED, VERIFIED, UNVERIFIED}
@@ -96,6 +97,7 @@ contract DonatETH {
     mapping(uint => Appointment) allAppointments;
     mapping(uint => Order) allOrders;
     mapping(address => mapping(uint => Store)) public ownerStores;
+    mapping(address => bool) public isAdmin;
 
     // Events
     event userCreated(uint uid);
@@ -133,7 +135,7 @@ contract DonatETH {
     
     
     constructor() public {
-        owner = msg.sender;
+        isAdmin[owner] = true;
     }
     
     function createUser(string memory _name, string memory  _email, string memory _username, UserType _userType) public returns (bool status) {
@@ -293,4 +295,7 @@ contract DonatETH {
         return (order.item.itemId, order.orderId, order.status, order.customer.userId, order.quantity, order.worth, order.physicalAddress, order.coordinates, order.initiateDate, order.completeDate);
     }
     
+    function() external {
+        revert();
+    }
 }
