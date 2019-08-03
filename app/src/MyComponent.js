@@ -4,9 +4,8 @@ import {
   ContractData,
   ContractForm
 } from "drizzle-react-components";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 import KyberSwap from "./KyberSwap";
-
 
 const RootComponent = ({ accounts, children, drizzle, drizzleStore }) => (
   <div className="App">
@@ -20,13 +19,16 @@ const RootComponent = ({ accounts, children, drizzle, drizzleStore }) => (
             <Link to="contact">Contact Us</Link>
           </li>
           <li>
-            <KyberSwap></KyberSwap>
+            <KyberSwap />
           </li>
         </ul>
       </div>
     </nav>
     {children}
-    {/* footer yaha */}
+    <footer class="uk-align-center uk-text-center">
+      <hr class="uk-divider-icon" />
+      <p className='uk-text-emphasis uk-text-middle'> &copy; Team DonatETH </p>
+    </footer>
   </div>
 );
 

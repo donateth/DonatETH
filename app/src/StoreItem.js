@@ -1,18 +1,31 @@
 import React from "react";
+import { drizzleConnect } from "drizzle-react";
 import "./App.css";
 
-export default ({ item }) => (
-  <div class="uk-card uk-card-default uk-width-1-3@m">
-    <div class="uk-card-header uk-padding-remove">
-      <div class="uk-grid-small uk-flex-middle" uk-grid>
-        <div class="uk-width-auto">
-          <img src={item.image} alt="Avatar" />
-        </div>
-        <div class="uk-width-expand uk-margin-small-left">
-          <h3 class="uk-card-title uk-margin-remove-bottom">{item.title}</h3>
-          <p class="uk-text-meta uk-margin-remove-top">{item.description}</p>
-        </div>
+const StoreItem = (props) => (
+  <div>
+    <div
+      className="uk-card uk-align-center uk-card-hover uk-margin-top uk-border-rounded uk-box-shadow-large uk-padding-small uk-card-default"
+      onClick={() => props.data.history.push(`store/${props.data.storeItem.storeId}`)}
+    >
+      <div className="uk-margin-top-small">
+        <img src={props.data.storeItem.image} alt={props.data.storeItem.title} width="225px" />
       </div>
+      <h3 className="uk-card-title uk-margin-remove-bottom">
+        {props.data.storeItem.title}
+      </h3>
+      <p className="uk-text-meta uk-margin-remove-top">
+        {props.data.storeItem.description}
+      </p>
     </div>
   </div>
 );
+
+export default drizzleConnect(StoreItem, (state, props) => {
+  return {
+    DonatETH: state.contracts.DonatETH,
+    accounts: state.accounts,
+    drizzle: props.drizzle,
+    drizzledata: props.drizzledata
+  };
+});

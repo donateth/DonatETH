@@ -9,6 +9,12 @@
   margin: 4rem auto auto;
 }
 
+.stores {
+  text-align: left;
+  max-width: 80%;
+  margin: 4rem auto auto;
+}
+
 .nav-item {
   display: flex;
   justify-content: center;
