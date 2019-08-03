@@ -11,8 +11,8 @@ export default ({ accounts }) => (
   <div className="App">
     <div>
       <img src={logo} alt="drizzle-logo" />
-      <h1>Drizzle Examples</h1>
-      <p>Examples of how to get started with Drizzle in various situations.</p>
+      <h1>DonatETH</h1>
+      <p>Don't leave your Karma for afterlife.</p>
     </div>
 
     <div className="section">
