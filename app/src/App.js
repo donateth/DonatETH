@@ -14,11 +14,18 @@ import MyContainer from "./MyContainer";
 import Home from "./Home";
 import Dashboard from "./Dashboard";
 import Form from "./Form";
+import StoreItem from "./StoreItem";
 
 const drizzleStore = generateStore(drizzleOptions)
 const drizzle = new Drizzle(drizzleOptions, drizzleStore)
 
 console.log({drizzle, drizzleStore})
+
+const sampleStoreItem = {
+  title: 'Laxmi Bakery',
+  description: 'Russian Cakes',
+  image: 'https://github.com/divyeshpuri.png'
+}
 
 class App extends Component {
   render() {
@@ -31,6 +38,7 @@ class App extends Component {
               <Route exact path="/dashboard" component={(props) => <Dashboard {...props} drizzle={drizzle} drizzleState={drizzleStore} />} />
               <Route exact path="/about" component={(props) => <Form {...props} drizzle={drizzle} drizzleState={drizzleStore} />} />
               <Route exact path="/register" component={(props) => <Form {...props} drizzle={drizzle} drizzleState={drizzleStore} />} />
+              <Route exact path="/stores" component={(props) => <StoreItem item={sampleStoreItem} drizzle={drizzle} drizzleState={drizzleStore} />} />
             </MyContainer>
           </Router>
         </LoadingContainer>
