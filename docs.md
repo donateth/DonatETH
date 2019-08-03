@@ -13,7 +13,7 @@ components -
 
 * modal
 * notification
-* form
+* form 
 * nav
 * footer
 * file upload

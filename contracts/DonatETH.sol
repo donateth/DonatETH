@@ -78,19 +78,19 @@ contract DonatETH is Ownable {
         string completeDate;
         uint storeId;
         Item item;
-        
+
     }
-    
-    
+
+
     // State Variables
     uint uid = 0;
-    uint storeCount = 0;
-    uint itemCount = 0;
-    uint appointmentId = 0;
-    uint orderId = 0;
-    uint itemId = 0;
+    uint public storeCount = 0;
+    uint public itemCount = 0;
+    uint public appointmentId = 0;
+    uint public orderId = 0;
+    uint public itemId = 0;
     address public owner;
-    
+
     mapping(uint => User) private users;
     mapping(address => User) private userAddressMap;
     mapping(uint => Store) public stores;
@@ -279,12 +279,25 @@ contract DonatETH is Ownable {
         }
         return ret;
     }
+
+    function getUserOrders(address _userAddress) public view returns (uint[] memory) {
+        User storage curUser = userAddressMap[_userAddress];
+        uint[] memory ret = new uint[](curUser.aptCount);
+        for (uint i = 0; i < curUser.orderCount; i++) {
+            ret[i] = curUser.orders[i].orderId;
+        }
+        return ret;
+    }
     
     function getAppointment(uint _appointmentId) public view returns (uint, AppointmentStatus , uint, uint, uint, string memory, string memory, string memory, string memory) {
         Appointment memory apt = allAppointments[_appointmentId];
         return (apt.appointmentId, apt.status, apt.donator.userId, apt.quantity, apt.worth, apt.physicalAddress, apt.coordinates, apt.initiateDate, apt.completeDate);
     }
     
+    function getAllAppointment() public view returns (uint apts) {
+        return appointmentId;
+    }
+
     function getUserByAddress(address _userAddress) public view returns (string memory, string memory, string memory, UserType, uint, uint) {
         User memory user = userAddressMap[_userAddress];
         return (user.name, user.email, user.username, user.userType, user.aptCount, user.orderCount);
