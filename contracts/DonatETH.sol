@@ -89,14 +89,14 @@ contract DonatETH {
     uint appointmentId = 0;
     uint orderId = 0;
     uint itemId = 0;
-    address owner;
+    address public owner;
     
     mapping(uint => User) private users;
     mapping(address => User) private userAddressMap;
-    mapping(uint => Store) stores;
+    mapping(uint => Store) public stores;
     mapping(uint => Appointment) allAppointments;
     mapping(uint => Order) allOrders;
-    mapping(address => mapping(uint => Store)) ownerStores;
+    mapping(address => mapping(uint => Store)) public ownerStores;
 
     // Events
     event userCreated(uint uid);
@@ -282,7 +282,7 @@ contract DonatETH {
         return (user.name, user.email, user.username, user.userType, user.aptCount, user.orderCount);
     }
     
-    function getOrder(uint _orderId) public returns (uint, uint, orderStatus , uint, uint, uint, string memory, string memory, string memory, string memory) {
+    function getOrder(uint _orderId) public view returns (uint, uint, orderStatus , uint, uint, uint, string memory, string memory, string memory, string memory) {
         Order memory order = allOrders[_orderId];
         return (order.item.itemId, order.orderId, order.status, order.customer.userId, order.quantity, order.worth, order.physicalAddress, order.coordinates, order.initiateDate, order.completeDate);
     }
