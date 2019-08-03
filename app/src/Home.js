@@ -3,7 +3,7 @@ import React from 'react'
 import logo from "./logo.png";
 import Button from "./Button";
 
-export default ({ history }) => {
+const Home = ({ history }) => {
     return (
         <div>
             <div>
@@ -88,3 +88,5 @@ export default ({ history }) => {
         </div>
     )
 }
+
+export default Home;
