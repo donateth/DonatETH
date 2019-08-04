@@ -3,6 +3,7 @@ import { drizzleConnect } from "drizzle-react";
 import "./App.css";
 
 const StoreItem = ({ data }) => (
+  console.log(data) &&
   <div>
     <div
       className="uk-card uk-align-center uk-card-hover uk-margin-top uk-border-rounded uk-box-shadow-large uk-padding-small uk-card-default"
