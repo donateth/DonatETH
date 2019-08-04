@@ -36,7 +36,7 @@ const RootComponent = ({ accounts, children, drizzle, drizzleStore }) => (
       </div>
     </nav>
     {children}
-    <footer class="uk-footer uk-align-center uk-text-center">
+    <footer class="uk-align-center uk-text-center">
       <hr />
       <p className="uk-text-emphasis uk-text-middle"> © Team DonatETH </p>
     </footer>

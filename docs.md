@@ -1,19 +1,8 @@
-pages - 
+Dev - 
 
-* Dashboard
-* Market
-* Admin
-* Orders, Appointments
-* donate page
-* Add store page
-* upload
+* npm i
+* truffle develop
+* cd app && npm i
+* npm start
 
-
-components - 
-
-* modal
-* notification
-* form 
-* nav
-* footer
-* file upload
+visit - localhost:3000

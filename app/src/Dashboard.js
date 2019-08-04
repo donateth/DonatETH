@@ -14,7 +14,6 @@ const Dashboard = props => {
       .getUserByAddress(props.accounts[0])
       .call()
       .then(res => {
-        console.log(res);
         if (res["0"] === "") return props.history.push("register");
         setUser(res);
       });
@@ -24,16 +23,16 @@ const Dashboard = props => {
       .call()
       .then(res => {
         const data = {};
-        console.log(res);
+        console.log(res)
         for (let i = 1; i <= res.length; i++) {
           props.drizzle.contracts.DonatETH.methods
             .getAppointment(i)
             .call()
             .then(apt => {
               data[i] = apt;
-              console.log(apt);
-              if (i === res - 1) {
+              if (i === res.length) {
                 setApts(data);
+                console.log(data)
               }
             });
         }
@@ -44,17 +43,14 @@ const Dashboard = props => {
       .call()
       .then(total => {
         const data = {};
-        console.log(total);
         for (let i = 1; i <= total.length; i++) {
           props.drizzle.contracts.DonatETH.methods
             .getOrder(i)
             .call()
             .then(order => {
-              console.log(order);
               data[i] = order;
-              if (i === total - 1) {
+              if (i === total.length) {
                 setOrders(data);
-                console.log(data);
               }
             });
         }
@@ -65,6 +61,8 @@ const Dashboard = props => {
       // cleanup
     };
   }, []);
+
+  console.log(apts)
 
   return (
     <div>

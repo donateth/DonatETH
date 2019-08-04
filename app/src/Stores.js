@@ -20,7 +20,7 @@ const Stores = props => {
             .then(store => {
               data[i] = store;
               console.log(store);
-              if (i === total - 1) {
+              if (i === total.length) {
                 setStores(data);
                 console.log(data);
               }
@@ -32,6 +32,8 @@ const Stores = props => {
     //     cleanup
     // };
   }, []);
+
+  console.log({stores})
 
   return (
     <>
