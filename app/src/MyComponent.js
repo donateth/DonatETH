@@ -7,6 +7,7 @@ import {
 import { Link } from "react-router-dom";
 import KyberSwap from "./KyberSwap";
 import logo from "./logo.png";
+import './App.css';
 
 const RootComponent = ({ accounts, children, drizzle, drizzleStore }) => (
   <div className="App">
@@ -34,7 +35,7 @@ const RootComponent = ({ accounts, children, drizzle, drizzleStore }) => (
     {children}
     <footer class="uk-footer uk-align-center uk-text-center">
       <hr />
-      <p className="uk-text-emphasis uk-text-middle"> &copy; Team DonatETH </p>
+      <p className="uk-text-emphasis uk-text-middle"> © Team DonatETH </p>
     </footer>
   </div>
 );
