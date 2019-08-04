@@ -8,13 +8,14 @@ import { Link } from "react-router-dom";
 import KyberSwap from "./KyberSwap";
 import logo from "./logo.png";
 
-
 const RootComponent = ({ accounts, children, drizzle, drizzleStore }) => (
   <div className="App">
     <nav className="uk-navbar-container uk-navbar-transparent" uk-navbar="true">
       <div className="uk-navbar-left">
-        <img src={logo} alt="donateth-logo" width="60px" />
-        <h2 className='uk-text-middle uk-padding-small-bottom'>DonatETH</h2>      
+        <a class="uk-text-bold uk-text-middle uk-navbar-item uk-logo" href="/">
+          <img src={logo} className="nav-logo" width="52px"></img>
+          DonatETH
+        </a>
       </div>
       <div className="uk-navbar-right">
         <ul className="uk-navbar-nav">
