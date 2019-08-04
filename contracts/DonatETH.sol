@@ -15,6 +15,7 @@ contract DonatETH is Ownable {
         address userAddress;
         string email;
         string username;
+        string media;
         uint karma;
         UserType userType;
         mapping(uint => Appointment) appointments;
@@ -143,6 +144,7 @@ contract DonatETH is Ownable {
             name: _name,
             email: _email,
             userId: uid++,
+            media: 'https://www.github.com/github.png',
             username: _username,
             karma: 0,
             userAddress: msg.sender,
@@ -232,7 +234,7 @@ contract DonatETH is Ownable {
         });
         
         userAddressMap[msg.sender].appointments[userAddressMap[msg.sender].aptCount++] = apt;
-        allAppointments[appointmentId++] = apt;
+        allAppointments[appointmentId] = apt;
         
         emit appointmentEvent(appointmentId, apt.status);
         
@@ -304,12 +306,12 @@ contract DonatETH is Ownable {
         return storeCount;
     }
 
-    function getUserByAddress(address _userAddress) public view returns (string memory, string memory, string memory, UserType, uint, uint) {
+    function getUserByAddress(address _userAddress) public view returns (string memory name, string memory email, string memory username, UserType uType, uint aptCount, uint orderCount, string memory media) {
         User memory user = userAddressMap[_userAddress];
-        return (user.name, user.email, user.username, user.userType, user.aptCount, user.orderCount);
+        return (user.name, user.email, user.username, user.userType, user.aptCount, user.orderCount, user.media);
     }
     
-    function getOrder(uint _orderId) public view returns (uint, uint, orderStatus , uint, uint, uint, string memory, string memory, string memory, string memory) {
+    function getOrder(uint _orderId) public view returns (uint itemId, uint orderId, orderStatus status, uint userId, uint quantity, uint worth, string memory physicalAddress, string memory coordinates, string memory initiateDate, string memory completeDate) {
         Order memory order = allOrders[_orderId];
         return (order.item.itemId, order.orderId, order.status, order.customer.userId, order.quantity, order.worth, order.physicalAddress, order.coordinates, order.initiateDate, order.completeDate);
     }
