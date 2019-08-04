@@ -24,7 +24,7 @@ const Dashboard = props => {
       .then(res => {
         const data = {};
         console.log(res);
-        for (let i = 1; i <= res; i++) {
+        for (let i = 1; i <= res.length; i++) {
           props.drizzle.contracts.DonatETH.methods
             .getAppointment(i)
             .call()
@@ -44,7 +44,7 @@ const Dashboard = props => {
       .then(total => {
         const data = {};
         console.log(total);
-        for (let i = 1; i <= total; i++) {
+        for (let i = 1; i <= total.length; i++) {
           props.drizzle.contracts.DonatETH.methods
             .getOrder(i)
             .call()
