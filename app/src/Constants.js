@@ -30,3 +30,9 @@ export const sampleStoreItem = [
     image: "https://github.com/amany9000.png"
   },  
 ];
+
+export const UserType = [
+  "Maanav",
+  "Daata",
+  "Doot"
+]

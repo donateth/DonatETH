@@ -1,5 +1,6 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { drizzleConnect } from "drizzle-react";
+import { UserType } from './Constants';
 
 const Dashboard = props => {
   const [user, setUser] = useState({});
@@ -85,7 +86,7 @@ const Dashboard = props => {
             <table className="uk-table uk-text-center uk-table-hover uk-table-divider">
               <thead>
                 <tr>
-                  <th>Appointment Id</th>
+                  <th>Donation Id</th>
                   <th>Status</th>
                   <th>Quantity</th>
                   <th>Worth</th>
@@ -129,14 +130,59 @@ const Dashboard = props => {
             </table>
           </li>
           <li>
-            {Object.keys(orders).map(orderInfo => {
-              return <div>{orders[orderInfo]}</div>;
-            })}
+          <table className="uk-table uk-text-center uk-table-hover uk-table-divider">
+              <thead>
+                <tr>
+                  <th>Order Id</th>
+                  <th>Status</th>
+                  <th>Quantity</th>
+                  <th>Worth</th>
+                  <th>Physical Address</th>
+                  <th>Coordinates</th>
+                  <th>Initial Date</th>
+                  <th>Complete Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                  {Object.keys(orders).map(order => {
+                    const { lat, long } = apts[
+                      order
+                    ].coordinates.split(",");
+                    return (
+                        <tr>
+                            <td>{orders[order].orderId}</td>
+                            <td>{orders[order].status}</td>
+                            <td>{orders[order].quantity}</td>
+                            <td>{orders[order].worth}</td>
+                            <td>{orders[order].physicalAddress}</td>
+                            <td>
+                            <a
+                                href={`https://www.latlong.net/c/?lat=${lat}&long=${long}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                Navigate
+                            </a>
+                            </td>
+                            <td>{orders[order].initialDate}</td>
+                            <td>
+                            {orders[order].completeDate || "TBD"}
+                            </td>
+                            <td>{orders[order].paid || "No"}</td>
+                        </tr>
+                    );
+                  })}
+              </tbody>
+            </table>
           </li>
           <li>
-            {Object.keys(user).map(userInfo => {
-              return <div>{user[userInfo]}</div>;
-            })}
+            <br/>
+            <img src={user.media} width='225' alt={user.name} className='uk-border-circle'/>
+            <p class='uk-card-title'>{user.name}</p>
+            <p>Email: {user.email}</p>
+            <p>User Type: {UserType[user.uType]}</p>
+            <p>{user.aptCount} Donations made</p>
+            <p>{user.orderCount} Karma redeemed in form of item.</p>
           </li>
         </ul>{" "}
       </div>
