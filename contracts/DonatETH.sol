@@ -208,6 +208,7 @@ contract DonatETH is Ownable {
         });
         
         stores[_storeId].items[stores[_storeId].itemCount] = item;
+        stores[_storeId].itemCount++;
         
         emit itemCreated(_storeId, _name);
         

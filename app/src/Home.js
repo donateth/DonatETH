@@ -7,7 +7,7 @@ const Home = ({ history }) => {
     return (
         <div>
             <div>
-      <img src={logo} className="logo" alt="drizzle-logo" />
+      <img src={logo} className="logo" alt="donateth-logo" />
       <h1>DonatETH</h1>
       <p className="uk-text-lead">Don't leave your Karma for afterlife.</p>
     </div>
