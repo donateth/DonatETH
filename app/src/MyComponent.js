@@ -29,6 +29,9 @@ const RootComponent = ({ accounts, children, drizzle, drizzleStore }) => (
           <li>
             <KyberSwap />
           </li>
+          <li className="uk-active">
+            <Link to="stores">Stores</Link>
+          </li>
         </ul>
       </div>
     </nav>
