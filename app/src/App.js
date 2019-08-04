@@ -6,6 +6,8 @@ import { Drizzle, generateStore } from "drizzle";
 
 import "uikit/dist/css/uikit.min.css";
 import "uikit/dist/css/uikit-rtl.css";
+import "uikit/dist/js/uikit-core";
+import "uikit/dist/js/uikit-icons";
 import "uikit/dist/js/uikit";
 import "./App.css";
 

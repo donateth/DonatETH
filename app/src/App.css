@@ -28,3 +28,7 @@
 .highlight:active{
   border: 0.1rem solid rgb(188, 188, 255);
 }
+
+th {
+  text-align: center !important;
+}
