@@ -32,14 +32,17 @@ const RootComponent = ({ accounts, children, drizzle, drizzleStore }) => (
           <li className="uk-active">
             <Link to="stores">Stores</Link>
           </li>
+          <li className="uk-active">
+            <Link to="create-store">Apply for Store</Link>
+          </li>
         </ul>
       </div>
     </nav>
     {children}
-    <footer class="uk-align-center uk-text-center">
+    {/* <footer class="uk-align-center uk-text-center">
       <hr />
       <p className="uk-text-emphasis uk-text-middle"> © Team DonatETH </p>
-    </footer>
+    </footer> */}
   </div>
 );
 

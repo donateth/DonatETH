@@ -35,6 +35,7 @@ const Stores = props => {
 
   console.log({stores})
 
+
   return (
     <>
       <h1 className="uk-text-center">Karma Forests</h1>
